@@ -1,0 +1,10 @@
+.history {
+    .sidebar__block-list {
+        &:empty {
+            &::after {
+                content: 'Тут пока пусто…';
+                color: var(--c-gray);
+            }
+        }
+    }
+}

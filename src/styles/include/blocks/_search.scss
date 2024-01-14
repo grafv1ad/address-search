@@ -1,0 +1,87 @@
+.search {
+    grid-area: search;
+    position: relative;
+    &__input {
+        width: 100%;
+        font-size: 16px;
+        appearance: none;
+        border: none;
+        padding: 10px 15px;
+        border-radius: var(--border-radius);
+        outline: transparent;
+        border: 2px solid transparent;
+        transition: border-color .2s;
+        background: var(--c-white);
+        &:focus {
+            border-color: var(--c-main);
+        }
+        &[disabled] {
+            pointer-events: none;
+        }
+        @include media-gt-s {
+            font-size: 22px;
+        }
+    }
+    &__loader {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        transition: opacity .2s;
+        opacity: 0;
+    }
+    &__suggest {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 10px);
+        width: 100%;
+        border-radius: var(--border-radius);
+        padding: 10px 15px;
+        background: var(--c-white);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 9;
+        transition: transform .2s, opacity .2s;
+        transform-origin: top center;
+        &:empty {
+            pointer-events: none;
+            transform: scaleY(0);
+            opacity: 0;
+        }
+        &-item {
+            cursor: pointer;
+            color: var(--c-background);
+            transition: color .2s;
+            &:hover {
+                color: var(--c-main);
+            }
+            &_history {
+                text-decoration: underline dotted var(--c-main);
+            }
+        }
+    }
+    &__input-wrapper {
+        &_loading {
+            .search__loader {
+                opacity: 1;
+            }
+        }
+    }
+    &__error {
+        font-size: 14px;
+        color: var(--c-main);
+        padding: 10px 15px;
+        margin: var(--section-gap) 0 0 0;
+        border: 2px solid var(--c-main);
+        border-radius: var(--border-radius);
+        transition: opacity .2s;
+        &:empty {
+            position: absolute;
+            left: -99999px;
+            opacity: 0;
+        }
+    }
+}
