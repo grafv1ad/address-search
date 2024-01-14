@@ -2,9 +2,14 @@
 
 Ссылка → https://grafv1ad.github.io/get-adress-info/  
 
+Поиск работает по всему миру, однако большую часть информации можно получить только из адресов России, подробнее можно узнать [здесь](https://dadata.ru/api/suggest/address/)
+
+---
+
 Работает на основе [DaData](https://dadata.ru/api/suggest/address/) API и [Yandex Maps](https://yandex.ru/dev/jsapi-v2-1/doc/) API, спасибо за возможность пользоваться ими бесплатно!  
 
 ---
+
 Выполнено в рамках обучения в [школе программистов hh.ru](https://school.hh.ru/)  
 
 Условия домашнего задания были следующие:
