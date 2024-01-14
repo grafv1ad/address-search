@@ -284,7 +284,7 @@ const renderResult = async (query) => {
         if (/^\d+$/.test(fiasValue)) {
             fiasValue = `<a href="https://www.geonames.org/${fiasValue}/" target="_blank">${fiasValue}</a>`;
             fiasName = 'GeoNames';
-        } else if (/^relation:\d+$/.test(fiasValue)) {
+        } else if (/^\w+:\d+$/.test(fiasValue)) {
             fiasValue = `<a href="https://www.openstreetmap.org/${fiasValue.replace(':', '/')}/" target="_blank">${fiasValue}</a>`;
             fiasName = 'OpenStreetMap';
         } else {
