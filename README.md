@@ -1,8 +1,8 @@
 ## Инструмент для получения юридической (и не только) информации об адресе
 
-Воспользоваться можно здесь → https://grafv1ad.github.io/get-adress-info/  
+Ссылка → https://grafv1ad.github.io/get-adress-info/  
 
-Работает на основе [API DaData](https://dadata.ru/api/suggest/address/), спасибо за бесплатную возможность им пользоваться!  
+Работает на основе [DaData](https://dadata.ru/api/suggest/address/) API и [Yandex Maps](https://yandex.ru/dev/jsapi-v2-1/doc/) API, спасибо за возможность пользоваться ими бесплатно!  
 
 ---
 Выполнено в рамках обучения в [школе программистов hh.ru](https://school.hh.ru/)  
