@@ -1,4 +1,14 @@
 @import 'include/libs/normalize';
 
+@import 'include/mixins';
 @import 'include/global';
+
 @import 'include/common/layout';
+@import 'include/common/heading';
+@import 'include/common/links';
+
+@import 'include/blocks/search';
+@import 'include/blocks/settings';
+@import 'include/blocks/result';
+@import 'include/blocks/sidebar';
+@import 'include/blocks/history';

@@ -1,0 +1,39 @@
+.sidebar {
+    grid-area: sidebar;
+    margin: var(--section-gap) 0 0;
+    height: 100%;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+        position: sticky;
+        left: 0;
+        top: var(--section-gap);
+    }
+    &__block {
+        border-radius: var(--border-radius);
+        &-title {
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            padding: 10px 20px;
+            background: var(--c-gray);
+        }
+        &-list {
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            border: 2px solid var(--c-gray);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 10px;
+        }
+        &-item {
+            cursor: pointer;
+            transition: color .2s;
+            &:hover {
+                color: var(--c-main);
+            }
+        }
+    }
+    @include media-gt-m {
+        margin: 0;
+    }
+}

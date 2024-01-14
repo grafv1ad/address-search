@@ -1,0 +1,11 @@
+@mixin media-gt-s {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-gt-m {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
