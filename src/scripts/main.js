@@ -144,19 +144,20 @@ const request = {
 const getData = async (count = 10) => {
     request.count = count;
 
+    let response = null;
     try {
-        const response = await fetch(API_URL, request);
-        if (response.ok) {
-            return response.json();
-        }
-
-        renderError('Ошибка, проверьте подключение к Интернету и попробуйте снова');
-        return;
+        response = await fetch(API_URL, request);
     } catch (error) {
         renderError('Что-то пошло не так, попробуйте обновить страницу');
         console.debug(error);
         return;
     }
+    
+    if (response.ok) {
+        return response.json();
+    }
+
+    renderError('Ошибка, проверьте подключение к Интернету и попробуйте снова');
 }
 
 const getSuggestions = async () => {
@@ -177,57 +178,60 @@ const getSuggestions = async () => {
         result = result.slice(0, 5);
     }
 
+    let data = null;
     try {
-        const data = await getData();
-        const suggestions = data.suggestions;
-    
-        if (!suggestions) {
-            renderError('Ошибка, попробуйте изменить запрос или обновить страницу');
-            return;
-        }
-
-        if (!suggestions.length) {
-            renderError('Не удалось ничего найти, измените запрос и попробуйте снова');
-            return;
-        }
-
-        for (const suggest in suggestions) {
-            result.push({
-                history: false,
-                value: suggestions[suggest].value,
-            });
-        }
-
-        result = result.reduce((acc, item) => {
-            if (!acc.find(element => element.value === item.value)) acc.push(item);
-            return acc;
-        }, []);
-
-        return result.slice(0, 10);
+        data = await getData();
     }
     catch (error) {
         renderError('Что-то пошло не так, попробуйте обновить страницу');
         console.debug(error);
         return;
     }
+
+    const suggestions = data.suggestions;
+    
+    if (!suggestions) {
+        renderError('Ошибка, попробуйте изменить запрос или обновить страницу');
+        return;
+    }
+
+    if (!suggestions.length) {
+        renderError('Не удалось ничего найти, измените запрос и попробуйте снова');
+        return;
+    }
+
+    for (const suggest in suggestions) {
+        result.push({
+            history: false,
+            value: suggestions[suggest].value,
+        });
+    }
+
+    result = result.reduce((acc, item) => {
+        if (!acc.find(element => element.value === item.value)) acc.push(item);
+        return acc;
+    }, []);
+
+    return result.slice(0, 10);
 }
 
 const getResult = async () => {
+    let data = null;
     try {
-        const data = await getData(1);
-
-        if (!data.suggestions || !data.suggestions[0]) {
-            renderError('Ошибка, попробуйте изменить запрос или обновить страницу');
-            return;
-        }
-
-        return data.suggestions[0];
+        data = await getData(1);
     }
     catch (error) {
         renderError('Что-то пошло не так, попробуйте обновить страницу');
         console.debug(error);
         return;
     }
+
+    if (!data.suggestions || !data.suggestions[0]) {
+        renderError('Ошибка, попробуйте изменить запрос или обновить страницу');
+        return;
+    }
+
+    return data.suggestions[0];
 }
 
 const renderSuggestions = async () => {
