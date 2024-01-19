@@ -55,25 +55,30 @@ const updateSearchHistory = (query) => {
     
     const searchHistory = getSearchHistory();
     let array = [query];
-    let result = array;
 
     if (searchHistory.length > 0) {
         if (searchHistory.includes(query)) return;
         searchHistory.unshift(query);
-        result = searchHistory;
+        array = searchHistory;
     }
 
-    result = JSON.stringify(result);
+    result = JSON.stringify(array);
 
     try {
         window.localStorage.setItem('search-history', result);
     } catch (error) {
-        // Освобождаем место, если localStorage переполнился
-        result = array.slice(0, array.length / 2);
-        result = JSON.stringify(result);
-
-        window.localStorage.setItem('search-history', result);
-        console.debug('reduce history length', error);
+        if (error.name === 'QuotaExceededError') {
+            // Освобождаем место, если localStorage переполнился
+            array = array.slice(0, Math.floor(array.length / 2));
+            result = JSON.stringify(array);
+    
+            window.localStorage.setItem('search-history', result);
+            console.debug('reduce history length', error);
+        } else {
+            // Сносим если дело не в этом
+            window.localStorage.removeItem('search-history');
+            console.debug('histoty cleared', error);
+        }
     }
 
     renderSearchHistory();
