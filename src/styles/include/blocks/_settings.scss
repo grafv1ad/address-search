@@ -1,0 +1,25 @@
+.settings {
+    &__item {
+        display: flex;
+        gap: 5px;
+        &-name {
+            display: block;
+            margin: 0 5px 0 0;
+        }
+        label {
+            span {
+                cursor: pointer;
+            }
+            input {
+                position: absolute;
+                left: -999999px;
+                &:checked , &:focus {
+                    + span {
+                        text-decoration: underline;
+                        text-decoration-color: var(--c-main);
+                    }
+                }
+            }
+        }
+    }
+}

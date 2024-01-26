@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    flex-grow: 1;
+    padding: 50px 20px;
+    @include media-gt-m {
+        padding: 50px 100px;
+        display: grid;
+        align-items: start;
+        grid-auto-rows: max-content;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: max-content minmax(50px, max-content) max-content;
+        column-gap: var(--section-gap);
+        grid-template-areas:  
+            'title .'
+            'search sidebar'
+            'result sidebar';
+    }
+}

@@ -1,0 +1,8 @@
+a {
+    transition: color .2s;
+    color: var(--c-main);
+    text-decoration: none;
+    &:hover {
+        color: lightblue;
+    }
+}
