@@ -10,6 +10,7 @@ const resultBlock = document.querySelector('.result');
 const resultTable = resultBlock.querySelector('.result__table');
 const resultMapWrapper = resultBlock.querySelector('.result__map');
 const settingsBlock = document.querySelector('.settings');
+const searchQueryExamples = document.querySelectorAll('.sidebar__block-item_example');
 
 const getLocalStorageSupport = () => {
     try {
@@ -99,7 +100,7 @@ const renderSearchHistory = () => {
         const element = document.createElement('div');
         element.textContent = item;
         element.classList.add('sidebar__block-item');
-        element.setAttribute('onclick', 'window.renderResult(this.textContent);');
+        element.addEventListener('click', () => renderResult(item));
         searchHistoryBlock.append(element);
     });
 }
@@ -265,7 +266,7 @@ const renderSuggestions = async () => {
         element.textContent = suggest.value;
         element.classList.add('search__suggest-item');
         if (suggest.history) element.classList.add('search__suggest-item_history');
-        element.setAttribute('onclick', 'window.renderResult(this.textContent);');
+        element.addEventListener('click', () => renderResult(suggest.value));
         suggestionBlock.append(element);
     });
     removeLoadingEffect();
@@ -401,7 +402,6 @@ const renderResult = async (query) => {
     resultBlock.classList.add('result_active');
     removeLoadingEffect();
 }
-window.renderResult = renderResult;
 
 const interact = () => {
     removeLoadingEffect();
@@ -421,6 +421,10 @@ window.addEventListener('storage', (event) => {
     if (event.key === 'search-history') {
         renderSearchHistory();
     }
+});
+
+searchQueryExamples.forEach(example => {
+    example.addEventListener('click', () => renderResult(example.textContent));
 });
 
 ymaps.ready(() => {
